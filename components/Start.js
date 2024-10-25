@@ -6,20 +6,10 @@ const Start =({ navigation }) => {
     const colors = ['#f0d6ff', '#c6e99f', '#e4f8ba', '#faf3d7'];
     const [background, setBackground] = useState('');
 
-    const auth = getAuth();
-    const signInUser = () => {
-        signInAnonymously(auth).then(res => {
-            navigation.navigate("Chat", {userID: res.user.uid, username: username, background: background});
-            Alert.alert("Signed in Successfully");
-        }).catch(err => {
-            Alert.alert("Unable to sign in, try later again");
-        })
-    }
-
     return (
        <View style={styles.container}>
          <ImageBackground
-           source={require("../images/bgImage.png")}
+           source={require("../assets/Image.png")}
            style={styles.imageBackground}
          >
            <Text style={styles.title}>ConnectToChat !</Text>
