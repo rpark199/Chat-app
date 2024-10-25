@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, TextInput, ImageBackground, TouchableOpacity, Alert } from "react-native";
+import { StyleSheet, View, Text, TextInput, ImageBackground, TouchableOpacity } from "react-native";
 
 const Start =({ navigation }) => {
     const [name, setName] = useState("");
@@ -17,8 +17,8 @@ const Start =({ navigation }) => {
              {/* user types name */}
              <TextInput
                style={styles.textInput}
-               value={username}
-               onChangeText={setUsername}
+               value={name}
+               onChangeText={setName}
                placeholder="Your name"
              />
              <Text style={styles.chooseBgColor}>Choose Background Color</Text>
@@ -45,7 +45,7 @@ const Start =({ navigation }) => {
                accessibilityRole="button"
                accessibilityHint="Lets you choose to enter the chat room"
                style={styles.button}
-               onPress={signInUser}
+               onPress={() => navigation.navigate('Chat')}
              >
                <Text style={styles.buttonText}>Start Chatting</Text>
              </TouchableOpacity>
