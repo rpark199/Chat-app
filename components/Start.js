@@ -14,7 +14,7 @@ const Start =({ navigation }) => {
          >
            <Text style={styles.title}>ConnectToChat !</Text>
            <View style={styles.box}>
-             {/* user types name */}
+             {/* name */}
              <TextInput
                style={styles.textInput}
                value={name}
@@ -26,7 +26,7 @@ const Start =({ navigation }) => {
              <View style={styles.colorButtonContainer}>
                {colors.map((color, index) => (
                  <TouchableOpacity
-                   key={index}
+                   key={color}
                    accessible={true}
                    accessibilityRole="button"
                    accessibilityHint="Lets you choose background color for your chat screen"
@@ -45,7 +45,7 @@ const Start =({ navigation }) => {
                accessibilityRole="button"
                accessibilityHint="Lets you choose to enter the chat room"
                style={styles.button}
-               onPress={() => navigation.navigate('Chat')}
+               onPress={() => navigation.navigate('Chat', {name: name})}
              >
                <Text style={styles.buttonText}>Start Chatting</Text>
              </TouchableOpacity>
