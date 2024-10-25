@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { StyleSheet, View, } from 'react-native';
 
 const Chat = ({ route, navigation }) => {
- const { name } = route.params;
+ const { name, backgroundColor } = route.params;
 
  useEffect(() => {
      navigation.setOptions({ title: name });
@@ -17,9 +17,14 @@ const Chat = ({ route, navigation }) => {
 const styles = StyleSheet.create({
  container: {
    flex: 1,
-   justifyContent: 'center',
-   alignItems: 'center'
- }
+ },
+ textInput: {
+     color: "#000000",
+     backgroundColor: "#FFFFFF",
+     paddingHorizontal: 10,
+     paddingVertical: 5,
+     fontSize: 16,
+ },
 });
 
 export default Chat;
