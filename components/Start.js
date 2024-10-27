@@ -45,7 +45,7 @@ const Start =({ navigation }) => {
                accessibilityRole="button"
                accessibilityHint="Lets you choose to enter the chat room"
                style={styles.button}
-               onPress={() => navigation.navigate('Chat', {name: name})}
+               onPress={() => navigation.navigate('Chat', {name: name, background: background})}
              >
                <Text style={styles.buttonText}>Start Chatting</Text>
              </TouchableOpacity>
