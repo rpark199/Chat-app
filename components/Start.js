@@ -8,52 +8,49 @@ const Start =({ navigation }) => {
 
     return (
        <View style={styles.container}>
-         <ImageBackground
-           source={require("../assets/Image.png")}
-           style={styles.imageBackground}
-         >
-           <Text style={styles.title}>ConnectToChat !</Text>
-           <View style={styles.box}>
-             {/* name */}
-             <TextInput
-               style={styles.textInput}
-               value={name}
-               onChangeText={setName}
-               placeholder="Your name"
-             />
-             <Text style={styles.chooseBgColor}>Choose Background Color</Text>
-             {/* user selects background color */}
-             <View style={styles.colorButtonContainer}>
-               {colors.map((color, index) => (
-                 <TouchableOpacity
-                   key={color}
-                   accessible={true}
-                   accessibilityRole="button"
-                   accessibilityHint="Lets you choose background color for your chat screen"
-                   style={[
-                     styles.colorButton,
-                     { backgroundColor: color },
-                     background === color && styles.selectedColor,
-                   ]}
-                   onPress={() => setBackground(color)}
-                 />
-               ))}
-             </View>
-             {/* to start chat */}
-             <TouchableOpacity
-               accessible={true}
-               accessibilityRole="button"
-               accessibilityHint="Lets you choose to enter the chat room"
-               style={styles.button}
-               onPress={() => navigation.navigate('Chat', {name: name, background: background})}
-             >
-               <Text style={styles.buttonText}>Start Chatting</Text>
-             </TouchableOpacity>
-           </View>
-         </ImageBackground>
+        <ImageBackground source={require("../assets/Image.png")}
+           style={styles.imageBackground}>
+            <View style={styles.contentContainer}>
+                <View style={styles.inputContainer}>
+                    {/* name */}
+                    <TextInput
+                        style={styles.textInput}
+                        value={name}
+                        onChangeText={setName}
+                        placeholder="Your name"
+                    />
+                    {/* user selects background color */}
+                    <Text style={styles.chooseBgColor}>Choose Background Color</Text>
+                    <View style={styles.colorContainer}>
+                        {colors.map((color, index) => (
+                            <TouchableOpacity
+                                key={color}
+                                accessibilityRole="button"
+                                style={[
+                                    styles.colorButton,
+                                    { backgroundColor: color },
+                                    background === color && styles.selectedColor,
+                                ]}
+                                onPress={() => setBackground(color)}
+                            />
+                        ))}
+                    </View>
+                    {/* to start chat */}
+                    <TouchableOpacity
+                        accessible={true}
+                        accessibilityLabel="Start Chatting"
+                        accessibilityRole="button"
+                        accessibilityHint="Lets you choose to enter the chat room"
+                        style={styles.button}
+                        onPress={() => navigation.navigate('Chat', {name: name, background: background})}>
+                        <Text style={styles.buttonText}>Start Chatting</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </ImageBackground>
        </View>
-     );
-    }
+    );
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
