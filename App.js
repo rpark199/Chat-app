@@ -9,6 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
 import { initializeApp } from 'firebase/app';
+import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from 'firebase/firestore';
 
 const App = () => {
@@ -19,11 +20,12 @@ const App = () => {
         storageBucket: "chat-app-815f1.firebasestorage.app",
         messagingSenderId: "1045944665896",
         appId: "1:1045944665896:web:f87d81fb421a6f4702321d",
-        measurementId: "G-RFBP1KLV3D",
+        measurementId: "G-RFBP1KLV3D"
     };
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
 
     // Initialize Cloud Firestore and get a reference to the service
     const db = getFirestore(app);
