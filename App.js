@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Alert } from 'react-native';
 import Start from './components/Start';
 import Chat from './components/Chat';
 
