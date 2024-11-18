@@ -6,8 +6,8 @@ const Start =({ navigation }) => {
     const [name, setName] = useState("");
     const colors = ['#f0d6ff', '#c6e99f', '#e4f8ba', '#faf3d7'];
     const [background, setBackground] = useState('');
-    const auth = getAuth();
 
+    const auth = getAuth();
     const signInUser = () => {
         signInAnonymously(auth)
             .then(result => {
@@ -23,7 +23,6 @@ const Start =({ navigation }) => {
         <View style={styles.container}>
             <ImageBackground
                 source={require("../assets/Image.png")}
-                resizeMode="cover"
                 style={styles.imageBackground}>
                 <View style={styles.contentContainer}>
                     <View style={styles.inputContainer}>
