@@ -17,9 +17,9 @@ import {
     Platform,
 } from 'react-native';
 import { Bubble, GiftedChat, InputToolbar } from 'react-native-gifted-chat';
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import CustomActions from './CustomActions';
+import MapView from 'react-native-maps';
 
 const Chat = ({ route, navigation, db, isConnected, storage }) => {
     const { name, background, userID } = route.params;
@@ -96,13 +96,52 @@ const Chat = ({ route, navigation, db, isConnected, storage }) => {
         if (isConnected) return <InputToolbar {...props} />;
         else return null;
     }
+    const renderCustomActions = (props) => {
+        return <CustomActions userID={userID} storage={storage} onSend={(newMessages => {
+            onSend([{
+                ...newMessages,
+                _id: uuidv4(),
+                createdAt: new Date (),
+                user: {
+                    _is: userID,
+                    name: name
+                }
+            }])
+        })} {...props} />;
+    };
+
+    const renderCustomView = (props) => {
+        const { currentMessage } = props;
+        if (currentMessage.location) {
+            return (
+                <MapView
+                    style={{
+                        width: 150,
+                        height: 100,
+                        borderRadius: 13,
+                        margin: 3
+                    }}
+                    region={{
+                        latitude: currentMessage.location.latitude,
+                        longitude: currentMessage.location.longitude,
+                        latitudeDelta: 0.0922,
+                        longitudeDelta: 0.0421,
+                    }}
+                />
+            );
+        }
+        return null;
+    }
 
     return (
         <View style={[styles.container, { backgroundColor: background }]}>
             <GiftedChat
                 messages={messages}
                 renderBubble={renderBubble}
+                renderInputToolbar={renderInputToolbar}
                 onSend={messages => onSend(messages)}
+                renderActions={renderCustomActions}
+                renderCustomView={renderCustomView}
                 user={{
                     _id: userID,
                     name: name,
